@@ -4,6 +4,7 @@
  */
 import express from 'express';
 import expressStatus from 'express-status-monitor';
+import { AuthRoute, TaskRoute } from './api/index.js';
 
 /**
  * @description Creates an express application
@@ -24,3 +25,4 @@ App.use(express.json());
  * @description Test server connection
  */
 App.get('/', statusMonitor.pageRoute);
+App.use('/auth', AuthRoute);
