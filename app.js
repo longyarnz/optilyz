@@ -26,3 +26,4 @@ App.use(express.json());
  */
 App.get('/', statusMonitor.pageRoute);
 App.use('/auth', AuthRoute);
+App.use('/task', TaskRoute);
