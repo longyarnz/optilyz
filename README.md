@@ -4,7 +4,7 @@
 Task App Backend API is a REST API with multiple endpoints for user access and task management.
 
 ### How To Use
-In a development environment install dependencies. Run npm install in the project folder,
+You have to install MongoDB on your machine or pass your preferred mongo url to the `.env` file.
 ```sh
   $ npm install
 ```
