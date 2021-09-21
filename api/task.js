@@ -36,7 +36,7 @@ TaskRoute.get('/', tokenParser, async (req, res) => {
 TaskRoute.post('/', tokenParser, validateTask, async (req, res) => {
   try {
     const { userId, body: { title, description, endTime, reminderTime } } = req;
-    const newTask = { title, description, endTime, reminderTime, created_by: userId }
+    const newTask = { title, description, endTime, reminderTime, created_by: userId };
     const task = await createTask(newTask);
     res.status(200).json(task);
   }

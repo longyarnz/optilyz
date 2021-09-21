@@ -6,15 +6,15 @@
 import { logger } from './logger.js';
 
 const isNotString = input => {
-  return typeof input !== 'string'
-}
+  return typeof input !== 'string';
+};
 
 const isNotDate = input => {
   if (isNotString(input)) return true;
 
   const date = new Date(input);
   return date.toString() === 'Invalid Date';
-}
+};
 
 export const validateTask = (req, res, next) => {
   /**

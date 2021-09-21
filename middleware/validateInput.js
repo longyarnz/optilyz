@@ -4,8 +4,8 @@
  * @exports validateLogin
  */
 const isNotString = input => {
-  return typeof input !== 'string'
-}
+  return typeof input !== 'string';
+};
 
 export const validateRegister = (req, res, next) => {
   /**

@@ -4,7 +4,7 @@
  */
 import { UserModel } from '../models/user.js';
 import { logger } from '../middleware/index.js';
-import { compare } from 'bcrypt'
+import { compare } from 'bcrypt';
 
 /**
  * @description Authenticates a user given a name and a password

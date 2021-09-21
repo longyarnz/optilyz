@@ -4,7 +4,6 @@
  */
 import express from 'express';
 import JWT from 'jsonwebtoken';
-import { v4 } from 'uuid';
 import { hash } from 'bcrypt';
 import { authenticateUser, createUser } from '../service/userService.js';
 import { logger, tokenParser, validateRegister, validateLogin } from '../middleware/index.js';
@@ -38,7 +37,7 @@ const registerNewUser = async (req, res) => {
     logger.error(err.message);
     res.status(400).json({ error: err.message });
   }
-}
+};
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -75,7 +74,7 @@ const loginUser = async (req, res) => {
     logger.error(err.message);
     res.status(400).json({ error: err.message });
   }
-}
+};
 
 /**
  * @description Registers a user into the Server

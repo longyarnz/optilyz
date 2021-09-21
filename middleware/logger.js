@@ -5,13 +5,13 @@
 import winston from 'winston';
 
 const { createLogger, format, transports } = winston;
-const { combine, timestamp, label, printf } = format;
+const { combine, timestamp, printf } = format;
 
 /**
  * @constant {string} Format - This is the format fo logs piped into info.log
  */
 const myFormat = printf(info => {
-  return `${info.timestamp} [${info.level}]: ${info.message}`
+  return `${info.timestamp} [${info.level}]: ${info.message}`;
 });
 
 /**

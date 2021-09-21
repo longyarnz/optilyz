@@ -10,7 +10,7 @@ describe('Test the /task endpoint', () => {
     description: 'Test app with express',
     endTime: '2021-09-20T21:23:12.573Z',
     reminderTime: '2021-09-20T20:23:12.573Z'
-  }
+  };
 
   beforeAll(async () => {
     await connect();
@@ -25,7 +25,7 @@ describe('Test the /task endpoint', () => {
       .send({
         'email': 'task@gmail.com',
         'password': 'task_password'
-      })
+      });
 
     token = login.body.token;
   });
@@ -38,16 +38,16 @@ describe('Test the /task endpoint', () => {
         'description': 'Test app with express',
         'endTime': '2021-09-20T21:23:12.573Z',
         'reminderTime': '2021-09-20T20:23:12.573Z'
-      })
+      });
     expect(response.statusCode).toBe(401);
     expect(response.body.error).toBe('Unauthenticated User');
-  })
+  });
   
   test('It should create a new task when data is posted to the /task path', async () => {
     const response = await request(App)
-    .post('/task')
-    .set('authorization', token)
-    .send(newTask)
+      .post('/task')
+      .set('authorization', token)
+      .send(newTask);
     expect(response.statusCode).toBe(200);
     expect(response.body.title).toBe(newTask.title);
     expect(response.body.description).toBe(newTask.description);
@@ -55,53 +55,53 @@ describe('Test the /task endpoint', () => {
     expect(response.body.reminderTime).toBe(newTask.reminderTime);
     expect(response.body.isCompleted).toBe(false);
     taskId = response.body._id;
-  })
+  });
   
   test('It should return all user tasks when a GET request is sent to the task endpoint', async () => {
     const response = await request(App)
-    .get('/task')
-    .set('authorization', token)
+      .get('/task')
+      .set('authorization', token);
     expect(response.statusCode).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
-  })
+  });
   
   test('It should return a user tasks when a task ID is sent as a query on GET request is sent to the task endpoint', async () => {
     const response = await request(App)
-    .get(`/task/${taskId}`)
-    .set('authorization', token)
+      .get(`/task/${taskId}`)
+      .set('authorization', token);
     expect(response.statusCode).toBe(200);
     expect(response.body.title).toBe(newTask.title);
     expect(response.body.description).toBe(newTask.description);
     expect(response.body.endTime).toBe(newTask.endTime);
     expect(response.body.reminderTime).toBe(newTask.reminderTime);
     expect(response.body.isCompleted).toBe(false);
-  })
+  });
   
   test('It should update a task when data is PUT to the task endpoint', async () => {
     const response = await request(App)
-    .put(`/task/${taskId}`)
-    .set('authorization', token)
-    .send({ ...newTask, isCompleted: true })
+      .put(`/task/${taskId}`)
+      .set('authorization', token)
+      .send({ ...newTask, isCompleted: true });
     expect(response.statusCode).toBe(200);
     expect(response.body.isCompleted).toBe(true);
-  })
+  });
   
   test('It should return an empty response an null update is PUT to the task endpoint', async () => {
     const response = await request(App)
-    .put(`/task/${taskId}`)
-    .set('authorization', token)
-    .send()
+      .put(`/task/${taskId}`)
+      .set('authorization', token)
+      .send();
     expect(response.statusCode).toBe(400);
     expect(response.body.error).toBe('Invalid Inputs');
-  })
+  });
 
   test('It should delete a task when a DELETE request is sent to the task endpoint', async () => {
     const response = await request(App)
       .delete(`/task/${taskId}`)
-      .set('authorization', token)
+      .set('authorization', token);
     expect(response.statusCode).toBe(200);
     expect(response.body).toBe(true);
-  })
+  });
   
   afterAll(async () => {
     await mongoose.model('User').deleteOne({ name: 'task_user' });

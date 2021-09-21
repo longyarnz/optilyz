@@ -15,5 +15,5 @@ const { PORT } = process.env;
  * @description Let server listen on a dedicated PORT
  */
 App.listen(PORT, () => {
-  console.log(`Task Manager listening at http://localhost:${PORT}`)
-})
+  console.log(`Task Manager listening at http://localhost:${PORT}`);
+});
